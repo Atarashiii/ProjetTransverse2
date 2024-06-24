@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Créer une Nouvelle Grille</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -19,7 +19,7 @@
                 <label for="caracteristiques">Caractéristiques :</label>
                 <textarea id="caracteristiques" name="caracteristiques" required></textarea>
 
-                <button onclick="soumettreGrille()">Commencer le questionnaire</button>
+                <button type="button" onclick="soumettreGrille()">Commencer le questionnaire</button>
             </form>
         </section>
     </main>
@@ -33,7 +33,6 @@
 
             window.location.href = 'formulaire.html';
         }
-  
     </script>
 </body>
 </html>

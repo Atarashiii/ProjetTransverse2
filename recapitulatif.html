@@ -8,21 +8,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
-    <h2>Récapitulatif des Réponses</h2>
-    <div id="recapitulatif">
-        <h3>Catégorie : Satisfaction</h3>
-        <p>Question 1 : <span id="reponse-satisfaction_q1"></span></p>
-        <p>Question 2 : <span id="reponse-satisfaction_q2"></span></p>
-        <h3>Catégorie : Produit</h3>
-        <p>Question 1 : <span id="reponse-produit_q1"></span></p>
-        <p>Question 2 : <span id="reponse-produit_q2"></span></p>
-        <h3>Catégorie : Recommandation</h3>
-        <p>Question 1 : <span id="reponse-recommandation_q1"></span></p>
-        <p>Question 2 : <span id="reponse-recommandation_q2"></span></p>
-    </div>
-    <button onclick="exporterImage()">Exporter en Image</button>
-    <button onclick="exporterCSV()">Exporter en CSV</button>
-
+    <header>
+        <h1>Récapitulatif des Réponses</h1>
+    </header>
+    <main>
+        <div id="recapitulatif">
+            <h2>Catégorie : Satisfaction</h2>
+            <p>Question 1 : <span id="reponse-satisfaction_q1"></span></p>
+            <p>Question 2 : <span id="reponse-satisfaction_q2"></span></p>
+            <h2>Catégorie : Produit</h2>
+            <p>Question 1 : <span id="reponse-produit_q1"></span></p>
+            <p>Question 2 : <span id="reponse-produit_q2"></span></p>
+            <h2>Catégorie : Recommandation</h2>
+            <p>Question 1 : <span id="reponse-recommandation_q1"></span></p>
+            <p>Question 2 : <span id="reponse-recommandation_q2"></span></p>
+        </div>
+        <button onclick="exporterImage()">Exporter en Image</button>
+        <button onclick="exporterCSV()">Exporter en CSV</button>
+    </main>
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             // Récupérer les réponses du localStorage
