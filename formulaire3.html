@@ -7,47 +7,298 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Axe 3 : Recommandation</h1>
-    </header>
     <main>
-        <form id="formulaire3">
-            <h2>Question 1 : Recommanderiez-vous notre produit à vos amis ?</h2>
-            <label>
-                <input type="radio" name="recommandation_q1" value="0"> 0
-            </label>
-            <label>
-                <input type="radio" name="recommandation_q1" value="1"> 1
-            </label>
-            <label>
-                <input type="radio" name="recommandation_q1" value="2"> 2
-            </label>
-            <br><br>
+    <form id="formulaire3">
+        <h2>Axe Numérique</h2>
+        <h2>Business model</h2>
+        <h3>Votre entreprise dégage t-elle une part de CA  par des produits ou services en ligne</h3>
+        <label>
+            <input type="radio" name="nq1" value="0"> 0
+        </label>
+        <label>
+            <input type="radio" name="nq1" value="1"> 1
+        </label>
+        <label>
+            <input type="radio" name="nq1" value="2"> 2
+        </label>
+        <br><br>
 
-            <h2>Question 2 : Avez-vous déjà recommandé notre produit ?</h2>
-            <label>
-                <input type="radio" name="recommandation_q2" value="0"> 0
-            </label>
-            <label>
-                <input type="radio" name="recommandation_q2" value="1"> 1
-            </label>
-            <label>
-                <input type="radio" name="recommandation_q2" value="2"> 2
-            </label>
-            <br><br>
+        <h3>La mise en place d’outils numériques a-t-elle permis d'optimiser les coûts, les délais et la qualité ?</h3>
+        <label>
+            <input type="radio" name="nq2" value="0"> 0
+        </label>
+        <label>
+            <input type="radio" name="nq2" value="1"> 1
+        </label>
+        <label>
+            <input type="radio" name="nq2" value="2"> 2
+        </label>
+        <br><br>
 
-            <button type="button" onclick="soumettreFormulaire3()">Terminer</button>
-        </form>
+        <h3>Comment les outils sont-ils intégrés dans les process de l’entreprise ?</h3>
+        <label>
+            <input type="radio" name="nq3" value="0"> 0
+        </label>
+        <label>
+            <input type="radio" name="nq3" value="1"> 1
+        </label>
+        <label>
+            <input type="radio" name="nq3" value="2"> 2
+        </label>
+        <br><br>
+
+        <h3>Comment partagez-vous les données numériques avec les parties prenantes (clients, fournisseurs,…) ?</h3>
+        <label>
+            <input type="radio" name="nq4" value="0"> 0
+        </label>
+        <label>
+            <input type="radio" name="nq4" value="1"> 1
+        </label>
+        <label>
+            <input type="radio" name="nq4" value="2"> 2
+        </label>
+        <br><br>
+
+        <h3>Mesurez-vous les impacts du numérique sur votre entreprise ?</h3>
+        <label>
+            <input type="radio" name="nq5" value="0"> 0
+        </label>
+        <label>
+            <input type="radio" name="nq5" value="1"> 1
+        </label>
+        <label>
+            <input type="radio" name="nq5" value="2"> 2
+        </label>
+        <br><br>
+
+        <h3>Quel est l’impact du numérique sur la démarche RSE de l’entreprise ?</h3>
+        <label>
+            <input type="radio" name="nq6" value="0"> 0
+        </label>
+        <label>
+            <input type="radio" name="nq6" value="1"> 1
+        </label>
+        <label>
+            <input type="radio" name="nq6" value="2"> 2
+        </label>
+        <br><br>
+
+        <h3>Existe-t-il des freins (stratégiques, financiers,…) à l’ investissement dans les outils numériques ?</h3>
+        <label>
+            <input type="radio" name="nq7" value="0"> 0
+        </label>
+        <label>
+            <input type="radio" name="nq7" value="1"> 1
+        </label>
+        <label>
+            <input type="radio" name="nq7" value="2"> 2
+        </label>
+        <br><br>
+
+        <h2>Relation client</h2>
+        <h3>L’entreprise dispose-t-elle : d’un site internet, d’un compte LinkedIn, d’une page Facebook, d’un compte Twitter,... ?</h3>
+        <label>
+            <input type="radio" name="nq7" value="0"> 0
+        </label>
+        <label>
+            <input type="radio" name="nq7" value="1"> 1
+        </label>
+        <label>
+            <input type="radio" name="nq7" value="2"> 2
+        </label>
+        <br><br>
+
+        <h3>Comment utilisez-vous le numérique dans la relation client ? (nouveau modèle de vente, nouveau modèle d’échanges avec les clients, communauté, story, chat,...)</h3>
+        <label>
+            <input type="radio" name="nq8" value="0"> 0
+        </label>
+        <label>
+            <input type="radio" name="nq8" value="1"> 1
+        </label>
+        <label>
+            <input type="radio" name="nq8" value="2"> 2
+        </label>
+        <br><br>
+
+        <h3>L’entreprise dispose-t-elle d’un community manager ?</h3>
+        <label>
+            <input type="radio" name="nq9" value="0"> 0
+        </label>
+        <label>
+            <input type="radio" name="nq9" value="1"> 1
+        </label>
+        <label>
+            <input type="radio" name="nq9" value="2"> 2
+        </label>
+        <br><br>
+
+        <h3>Certains de vos collaborateurs sont-ils actifs sur les réseaux sociaux au nom de l’entreprise ?</h3>
+        <label>
+            <input type="radio" name="nq10" value="0"> 0
+        </label>
+        <label>
+            <input type="radio" name="nq10" value="1"> 1
+        </label>
+        <label>
+            <input type="radio" name="nq10" value="2"> 2
+        </label>
+        <br><br>
+
+        <h3>Comment mesurez-vous et exploitez-vous les données issues du site de votre entreprise ?</h3>
+        <label>
+            <input type="radio" name="nq11" value="0"> 0
+        </label>
+        <label>
+            <input type="radio" name="nq11" value="1"> 1
+        </label>
+        <label>
+            <input type="radio" name="nq11" value="2"> 2
+        </label>
+        <br><br>
+
+        <h3>Avez-vous observé chez vos concurrents des pratiques innovantes ?</h3>
+        <label>
+            <input type="radio" name="nq12" value="0"> 0
+        </label>
+        <label>
+            <input type="radio" name="nq12" value="1"> 1
+        </label>
+        <label>
+            <input type="radio" name="nq12" value="2"> 2
+        </label>
+        <br><br>
+
+        <h2>Management</h2>
+        <h3>Vos collaborateurs sont-ils équipés de nouveaux équipements numériques de travail (PC portable, tablette, smartphone,…) ? </h3>
+        <label>
+            <input type="radio" name="nq13" value="0"> 0
+        </label>
+        <label>
+            <input type="radio" name="nq13" value="1"> 1
+        </label>
+        <label>
+            <input type="radio" name="nq13" value="2"> 2
+        </label>
+        <br><br>
+
+        <h3>L’arrivée des outils digitaux a-t-elle eu un impact sur les pratiques et la culture de l’entreprise ?</h3>
+        <label>
+            <input type="radio" name="nq14" value="0"> 0
+        </label>
+        <label>
+            <input type="radio" name="nq14" value="1"> 1
+        </label>
+        <label>
+            <input type="radio" name="nq14" value="2"> 2
+        </label>
+        <br><br>
+
+        <h3>Comment vous êtes-vous approprié et comment avez-vous accompagné ces évolutions?</h3>
+        <label>
+            <input type="radio" name="nq15" value="0"> 0
+        </label>
+        <label>
+            <input type="radio" name="nq15" value="1"> 1
+        </label>
+        <label>
+            <input type="radio" name="nq15" value="2"> 2
+        </label>
+        <br><br>
+
+        <h3>Les nouvelles possibilités technologiques ont-elles fait évoluer le modèle d’organisation de l’entreprise et/ou votre management, vers plus de collaboration avec des acteurs internes ou externes ?/h3>
+        <label>
+            <input type="radio" name="nq16" value="0"> 0
+        </label>
+        <label>
+            <input type="radio" name="nq16" value="1"> 1
+        </label>
+        <label>
+            <input type="radio" name="nq16" value="2"> 2
+        </label>
+        <br><br>
+
+        <h3>Mobilisez-vous des outils de veille et mettez-vous en œuvre des modalités de curation et de partage de l’ information ?</h3>
+        <label>
+            <input type="radio" name="nq17" value="0"> 0
+        </label>
+        <label>
+            <input type="radio" name="nq17" value="1"> 1
+        </label>
+        <label>
+            <input type="radio" name="nq17" value="2"> 2
+        </label>
+        <br><br>
+
+        <h3>Les fonctionnalités des outils sont-elles augmentées par la pratique de vos collaborateurs ?</h3>
+        <label>
+            <input type="radio" name="nq18" value="0"> 0
+        </label>
+        <label>
+            <input type="radio" name="nq18" value="1"> 1
+        </label>
+        <label>
+            <input type="radio" name="nq18" value="2"> 2
+        </label>
+        <br><br>
+
+        <h3>Comment accompagnez-vous vos collaborateurs dans la transition numérique ?</h3>
+        <label>
+            <input type="radio" name="nq19" value="0"> 0
+        </label>
+        <label>
+            <input type="radio" name="nq19" value="1"> 1
+        </label>
+        <label>
+            <input type="radio" name="nq19" value="2"> 2
+        </label>
+        <br><br>
+
+        <button type="button" onclick="soumettreFormulaire3()">Terminer</button>
+    </form>
     </main>
     <script>
         function soumettreFormulaire3() {
             // Récupérer les valeurs des questions
-            var recommandation_q1 = document.querySelector('input[name="recommandation_q1"]:checked') ? document.querySelector('input[name="recommandation_q1"]:checked').value : '';
-            var recommandation_q2 = document.querySelector('input[name="recommandation_q2"]:checked') ? document.querySelector('input[name="recommandation_q2"]:checked').value : '';
-
+            var nq1 = document.querySelector('input[name="nq1"]:checked') ? document.querySelector('input[name="nq1"]:checked').value : '';
+            var nq2 = document.querySelector('input[name="nq2"]:checked') ? document.querySelector('input[name="nq2"]:checked').value : '';
+            var nq3 = document.querySelector('input[name="nq3"]:checked') ? document.querySelector('input[name="nq3"]:checked').value : '';
+            var nq4 = document.querySelector('input[name="nq4"]:checked') ? document.querySelector('input[name="nq4"]:checked').value : '';
+            var nq5 = document.querySelector('input[name="nq5"]:checked') ? document.querySelector('input[name="nq5"]:checked').value : '';
+            var nq6 = document.querySelector('input[name="nq6"]:checked') ? document.querySelector('input[name="nq6"]:checked').value : '';
+            var nq7 = document.querySelector('input[name="nq7"]:checked') ? document.querySelector('input[name="nq7"]:checked').value : '';
+            var nq8 = document.querySelector('input[name="nq8"]:checked') ? document.querySelector('input[name="nq8"]:checked').value : '';
+            var nq9 = document.querySelector('input[name="nq9"]:checked') ? document.querySelector('input[name="nq9"]:checked').value : '';
+            var nq10 = document.querySelector('input[name="nq10"]:checked') ? document.querySelector('input[name="nq10"]:checked').value : '';
+            var nq11 = document.querySelector('input[name="nq11"]:checked') ? document.querySelector('input[name="nq11"]:checked').value : '';
+            var nq12 = document.querySelector('input[name="nq12"]:checked') ? document.querySelector('input[name="nq12"]:checked').value : '';
+            var nq13 = document.querySelector('input[name="nq13"]:checked') ? document.querySelector('input[name="nq13"]:checked').value : '';
+            var nq14 = document.querySelector('input[name="nq14"]:checked') ? document.querySelector('input[name="nq14"]:checked').value : '';
+            var nq15 = document.querySelector('input[name="nq15"]:checked') ? document.querySelector('input[name="nq15"]:checked').value : '';
+            var nq16 = document.querySelector('input[name="nq16"]:checked') ? document.querySelector('input[name="nq16"]:checked').value : '';
+            var nq17 = document.querySelector('input[name="nq17"]:checked') ? document.querySelector('input[name="nq17"]:checked').value : '';
+            var nq18 = document.querySelector('input[name="nq18"]:checked') ? document.querySelector('input[name="nq18"]:checked').value : '';
+            var nq19 = document.querySelector('input[name="nq19"]:checked') ? document.querySelector('input[name="nq19"]:checked').value : '';
+            
             // Stocker les réponses dans le localStorage
-            localStorage.setItem('recommandation_q1', recommandation_q1);
-            localStorage.setItem('recommandation_q2', recommandation_q2);
+            localStorage.setItem('nq1', nq1);
+            localStorage.setItem('nq2', nq2);
+            localStorage.setItem('nq3', nq3);
+            localStorage.setItem('nq4', nq4);
+            localStorage.setItem('nq5', nq5);
+            localStorage.setItem('nq6', nq6);
+            localStorage.setItem('nq7', nq7);
+            localStorage.setItem('nq8', nq8);
+            localStorage.setItem('nq9', nq9);
+            localStorage.setItem('nq10', nq10);
+            localStorage.setItem('nq11', nq11);
+            localStorage.setItem('nq12', nq12);
+            localStorage.setItem('nq13', nq13);
+            localStorage.setItem('nq14', nq14);
+            localStorage.setItem('nq15', nq15);
+            localStorage.setItem('nq16', nq16);
+            localStorage.setItem('nq17', nq17);
+            localStorage.setItem('nq18', nq18);
+            localStorage.setItem('nq19', nq19);
 
             // Rediriger vers la page de récapitulatif
             window.location.href = 'recapitulatif.html';
