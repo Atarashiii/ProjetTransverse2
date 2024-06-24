@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer une Nouvelle Grille</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Créer une Nouvelle Grille</h1>
+    </header>
+    <main>
+        <section id="nouvelle-grille">
+            <form id="form-grille">
+                <label for="nom-entreprise">Nom de l'entreprise :</label>
+                <input type="text" id="nom-entreprise" name="nom-entreprise" required>
+                
+                <label for="caracteristiques">Caractéristiques :</label>
+                <textarea id="caracteristiques" name="caracteristiques" required></textarea>
+                
+                <button type="submit">Créer la grille</button>
+            </form>
+        </section>
+    </main>
+    <script>
+        document.getElementById('form-grille').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            var nomEntreprise = document.getElementById('nom-entreprise').value;
+            var caracteristiques = document.getElementById('caracteristiques').value;
+
+            localStorage.setItem('nomEntreprise', nomEntreprise);
+            localStorage.setItem('caracteristiques', caracteristiques);
+
+            window.location.href = 'formulaire.html';
+        });
+    </script>
+</body>
+</html>
