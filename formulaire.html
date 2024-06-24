@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Questions</title>
+</head>
+<body>
+    <form id="formulaire">
+        <h3>Question 1 : Votre satisfaction avec notre service ?</h3>
+        <label>
+            <input type="radio" name="q1" value="0"> 0
+        </label>
+        <label>
+            <input type="radio" name="q1" value="1"> 1
+        </label>
+        <label>
+            <input type="radio" name="q1" value="2"> 2
+        </label>
+        <br><br>
+
+        <h3>Question 2 : La qualité de notre produit ?</h3>
+        <label>
+            <input type="radio" name="q2" value="0"> 0
+        </label>
+        <label>
+            <input type="radio" name="q2" value="1"> 1
+        </label>
+        <label>
+            <input type="radio" name="q2" value="2"> 2
+        </label>
+        <br><br>
+
+        <h3>Question 3 : Recommanderiez-vous notre produit ?</h3>
+        <label>
+            <input type="radio" name="q3" value="0"> 0
+        </label>
+        <label>
+            <input type="radio" name="q3" value="1"> 1
+        </label>
+        <label>
+            <input type="radio" name="q3" value="2"> 2
+        </label>
+        <br><br>
+
+        <button type="button" onclick="soumettreFormulaire()">Soumettre</button>
+    </form>
+
+    <script>
+        function soumettreFormulaire() {
+            // Récupérer les valeurs des questions
+            var q1 = document.querySelector('input[name="q1"]:checked') ? document.querySelector('input[name="q1"]:checked').value : '';
+            var q2 = document.querySelector('input[name="q2"]:checked') ? document.querySelector('input[name="q2"]:checked').value : '';
+            var q3 = document.querySelector('input[name="q3"]:checked') ? document.querySelector('input[name="q3"]:checked').value : '';
+
+            // Stocker les réponses dans le localStorage
+            localStorage.setItem('q1', q1);
+            localStorage.setItem('q2', q2);
+            localStorage.setItem('q3', q3);
+
+            // Rediriger vers la page de récapitulatif
+            window.location.href = 'recapitulatif.html';
+        }
+    </script>
+</body>
+</html>

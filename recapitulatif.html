@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Récapitulatif des Réponses</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <h2>Récapitulatif des Réponses</h2>
+    <div id="recapitulatif">
+        <p>Question 1 : <span id="reponse-q1"></span></p>
+        <p>Question 2 : <span id="reponse-q2"></span></p>
+        <p>Question 3 : <span id="reponse-q3"></span></p>
+    </div>
+    <button onclick="exporterCSV()">Exporter en CSV</button>
+    <button onclick="exporterImage()">Exporter en Image</button>
+    <button onclick="allerIndex()">Retournez au menu</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Récupérer les réponses du localStorage
+            var q1 = localStorage.getItem('q1');
+            var q2 = localStorage.getItem('q2');
+            var q3 = localStorage.getItem('q3');
+
+            // Afficher les réponses sur la page
+            document.getElementById('reponse-q1').textContent = q1 !== null ? q1 : 'Non répondu';
+            document.getElementById('reponse-q2').textContent = q2 !== null ? q2 : 'Non répondu';
+            document.getElementById('reponse-q3').textContent = q3 !== null ? q3 : 'Non répondu';
+        });
+
+        function allerIndex() {
+            window.location.href = 'index.html';
+        }
+
+        function exporterImage() {
+            html2canvas(document.getElementById('recapitulatif')).then(canvas => {
+                var link = document.createElement('a');
+                link.download = 'recapitulatif.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+
+        function exporterCSV() {
+            // Récupérer les réponses du localStorage
+            var q1 = localStorage.getItem('q1');
+            var q2 = localStorage.getItem('q2');
+            var q3 = localStorage.getItem('q3');
+
+            // Générer le contenu CSV
+            var csv = 'Question 1,Question 2,Question 3\n' + q1 + ',' + q2 + ',' + q3;
+
+            // Créer un blob à partir du contenu CSV
+            var blob = new Blob([csv], { type: 'text/csv' });
+            var url = window.URL.createObjectURL(blob);
+
+            // Créer un lien de téléchargement
+            var a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'questions_digital.csv';
+
+            // Ajouter le lien à la page et simuler un clic
+            document.body.appendChild(a);
+            a.click();
+
+            // Supprimer le lien après le téléchargement
+            document.body.removeChild(a);
+        }
+    </script>
+</body>
+</html>
