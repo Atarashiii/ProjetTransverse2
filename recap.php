@@ -1,29 +1,5 @@
 
-<?php
-// Récupération de l'ID de la grille
-$grille_id = isset($_GET['id']) ? $_GET['id'] : die('ID de grille non spécifié.');
-
-// Utiliser $grille_id dans votre requête SQL pour filtrer les données
-$sql = "SELECT question_libelle, reponse FROM résultats WHERE grille_id = $grille_id";  // Adaptez cette requête selon votre base de données
-
-// Définir l'encodage des en-têtes HTML en UTF-8
-header('Content-Type: text/html; charset=utf-8');
-
-$servername = "localhost"; 
-$username = "root";  
-$password = "root";     
-$dbname = "projettranseverse2"; 
-
-// Créer la connexion
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Vérifier la connexion
-if ($conn->connect_error) {
-    die("Échec de la connexion: " . $conn->connect_error);
-}
-// Configurer la connexion pour utiliser UTF-8
-$conn->set_charset("utf8");
-?>
+<?php include 'config.php'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>

@@ -1,3 +1,4 @@
+<?php include 'config.php'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,18 +15,6 @@
         <p>Cliquez sur le bouton ci-dessous pour commencer le questionnaire.</p>
         <button onclick="nouvelleGrille()">Nouvelle Grille</button>
         <?php
-            // Connexion à la base de données
-            $servername = "localhost"; 
-            $username = "root";  
-            $password = "root";     
-            $dbname = "projettranseverse2";
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            $conn->set_charset("utf8");
-
-            if ($conn->connect_error) {
-                die("Échec de la connexion: " . $conn->connect_error);
-            }
-
             // Récupération des grilles disponibles
             $sql = "SELECT DISTINCT(grille_id),grille_date,g.entreprise_id,entreprise_libelle  FROM grille g
                     JOIN entreprise e ON g.entreprise_id = e.entreprise_id "; // Assurez-vous que cette requête correspond à votre structure de base de données
