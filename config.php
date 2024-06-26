@@ -1,7 +1,7 @@
 <?php
 // config.php
 
-$servername = "172.16.47.190"; 
+$servername = "10.10.10.50"; 
 $username = "operator";  
 $password = "root";     
 $dbname = "app";
