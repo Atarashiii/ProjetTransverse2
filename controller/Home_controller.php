@@ -9,7 +9,7 @@ class Home_Controller {
         $this->ObjGrilleModel = new Grille_model($conn);
     }
 
-    public function handleRequest() {
+    public function HomeIndex() {
         $grilles = $this->ObjGrilleModel->getAvailableGrilles();
         include '../view/home.php';
     }

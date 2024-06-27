@@ -72,6 +72,5 @@ class Api_Controller {
             echo json_encode(['error' => $e->getMessage()]);
         }
     }
-    
 }
 ?>

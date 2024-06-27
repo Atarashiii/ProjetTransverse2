@@ -21,7 +21,7 @@
                 <?php endforeach; ?>
             </select>
             <input type="hidden" name="ctrl" value="grille">
-            <input type="hidden" name="action" value="handleRequest">
+            <input type="hidden" name="action" value="GrilleIndex">
             <button type="submit">Afficher la grille</button>
         </form>
         <form>

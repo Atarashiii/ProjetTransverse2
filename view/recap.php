@@ -37,13 +37,12 @@
                 </div>
             <?php endforeach; ?>
             
-            <button id="exportBtn" data-grille-id="<?= $grille_id ?>" data-entreprise-id="<?= $entreprise_id ?>">
-                Exporter les données au format JSON
-            </button>
+            <button id="exportBtn" data-grille-id="1" data-entreprise-id="1">Afficher les données au format JSON</button>
+
+            <script src="../public/js/export.js"></script>
 
             <canvas id="chart" data-axes='<?= json_encode($moyennes_par_axe) ?>'></canvas>
             <script src="../diagnostic_script.js"></script>
-            <script src="../export.js"></script>
         </section>
     </main>
 </body>
