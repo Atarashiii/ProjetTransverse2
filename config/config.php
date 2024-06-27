@@ -1,10 +1,10 @@
 <?php
 // config.php
 
-include_once 'Database.php'; // Inclusion de la classe Database
+include_once 'database.php'; // Inclusion de la classe Database
 
-$servername = "localhost";
-$username = "root";
+$servername = "10.10.10.50";
+$username = "operator";
 $password = "root";
 $dbname = "app";
 
