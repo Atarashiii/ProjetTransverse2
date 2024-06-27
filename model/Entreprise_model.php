@@ -22,6 +22,19 @@ class Entreprise_model {
         return $data;
     }
 
+    public function create($nom, $commentaire) {
+        $nom_entreprise = $this->conn->real_escape_string($nom);
+        $commentaire = $this->conn->real_escape_string($commentaire);
+        
+        $sql = "INSERT INTO entreprise (entreprise_libelle, entreprise_commentaire) VALUES ('$nom_entreprise', '$commentaire')";
+
+        if ($this->conn->query($sql) === TRUE) {
+            return true;
+        } else {
+            return "Erreur: " . $sql . "<br>" . $this->conn->error;
+        }
+    }
+
     public function closeConnection() {
         $this->conn->close();
     }

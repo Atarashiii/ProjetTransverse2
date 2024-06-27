@@ -1,6 +1,14 @@
 <?php include 'header.php'; ?>
 
     <main>
+        <p>Saisir une nouvelle grille :</p>
+        <form>
+            <input type="hidden" name="ctrl" value="entreprise">
+            <input type="hidden" name="action" value="EntrepriseIndex">
+            <button type="submit">Nouvelle Grille</button>
+        </form>
+        <br>
+        <br>
         <p>Séléctionner votre résultat :</p>
         <form action="../public/index.php" method="get">
             <select name="id">

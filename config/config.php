@@ -15,7 +15,7 @@ $database = new Database($servername, $username, $password, $dbname);
 $conn = $database->getConnection();
 
 if (!defined('APP_VERSION')) {
-    define('APP_VERSION', '1.1.4');
+    define('APP_VERSION', '1.1.6');
 }
 
 ?>
