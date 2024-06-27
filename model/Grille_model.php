@@ -42,6 +42,35 @@ class Grille_model {
         return $data;
     }
 
+    public function createGrilleForEntreprise($entreprise_id) {
+        // Créer une grille avec des réponses par défaut (réponse_valeur = 0)
+        $date = date('Y-m-d H:i:s');
+        $values = array();
+
+        // Insérer 40 lignes dans la table grille pour l'entreprise donnée
+        for ($question_id = 1; $question_id <= 40; $question_id++) {
+            // Trouver la réponse_id pour cette question où reponse_valeur = 0
+            $sql = "SELECT reponse_id FROM reponse WHERE question_id = $question_id AND reponse_valeur = 0";
+            $result = $this->conn->query($sql);
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $reponse_id = $row['reponse_id'];
+                $values[] = "(1, $entreprise_id, $question_id, $reponse_id, '$date', ' ')";
+            }
+        }
+
+        if (!empty($values)) {
+            $sql = "INSERT INTO grille (grille_id, entreprise_id, question_id, reponse_id, grille_date, grille_commentaire) VALUES " . implode(", ", $values);
+            if ($this->conn->query($sql) === TRUE) {
+                return true;
+            } else {
+                return "Erreur lors de la création de la grille : " . $this->conn->error;
+            }
+        } else {
+            return "Aucune réponse par défaut trouvée.";
+        }
+    }
+
     public function closeConnection() {
         $this->conn->close();
     }

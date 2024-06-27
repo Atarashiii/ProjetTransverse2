@@ -1,16 +1,18 @@
 <?php
-include '../config/config.php';
+include_once '../config/config.php';
 include_once '../model/Entreprise_model.php';
+include_once '../model/Grille_model.php';
 
 class Entreprise_controller {
     private $ObjEntrepriseModel;
+    private $ObjGrilleModel;
 
     public function __construct($conn) {
         $this->ObjEntrepriseModel = new Entreprise_model($conn);
+        $this->ObjGrilleModel = new Grille_model($conn);
     }
 
     public function EntrepriseIndex() {
-        
         $appversion['app_version'] = APP_VERSION;
         include '../view/createEntreprise.php';
     }
@@ -22,11 +24,21 @@ class Entreprise_controller {
             $nom = isset($_POST['nom_entreprise']) ? $_POST['nom_entreprise'] : '';
             $commentaire = isset($_POST['commentaire']) ? $_POST['commentaire'] : '';
 
-            $result = $this->ObjEntrepriseModel->create($nom, $commentaire);
+            $result = $this->ObjEntrepriseModel->createEntreprise($nom, $commentaire);
 
             if ($result === true) {
-                header("Location: index.php?success=1");
-                exit();
+                // Récupérer l'ID de l'entreprise nouvellement créée
+                $entreprise_id = $this->ObjEntrepriseModel->getLastInsertedId();
+
+                $result_grille = $this->ObjGrilleModel->createGrilleForEntreprise($entreprise_id);
+
+                if ($result_grille === true) {
+                    // Redirection après insertion réussie
+                    header("Location: index.php?action=EntrepriseIndex");
+                    exit();
+                } else {
+                    echo $result_grille;
+                }
             } else {
                 echo $result;
             }
