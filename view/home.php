@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil</title>
-    <link rel="stylesheet" href="../style.css">
-</head>
-<body>
-    <header>
-        <h1>Bienvenue sur notre questionnaire</h1>
-    </header>
+<?php include 'header.php'; ?>
+
     <main>
         <p>Séléctionner votre résultat :</p>
         <form action="../public/index.php" method="get">
@@ -29,8 +19,8 @@
             <br>
             <input type="hidden" name="ctrl" value="api">
             <input type="hidden" name="action" value="listEndpoints">
-            <button type="submit">Accès à l'api</button>
+            <button type="submit">Accès à l'API</button>
         </form>
     </main>
-</body>
-</html>
+
+<?php include 'footer.php'; ?>

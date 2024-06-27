@@ -3,8 +3,8 @@
 
 include_once 'database.php'; // Inclusion de la classe Database
 
-$servername = "10.10.10.50";
-$username = "operator";
+$servername = "localhost";
+$username = "root";
 $password = "root";
 $dbname = "app";
 
@@ -13,4 +13,9 @@ $database = new Database($servername, $username, $password, $dbname);
 
 // Récupération de l'objet de connexion pour être utilisé dans d'autres fichiers
 $conn = $database->getConnection();
+
+if (!defined('APP_VERSION')) {
+    define('APP_VERSION', '1.1.4');
+}
+
 ?>
