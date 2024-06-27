@@ -11,6 +11,8 @@ class Home_Controller {
 
     public function HomeIndex() {
         $grilles = $this->ObjGrilleModel->getAvailableGrilles();
+        
+        $appversion['app_version'] = APP_VERSION;
         include '../view/home.php';
     }
 

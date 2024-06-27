@@ -21,17 +21,9 @@ var myChart = new Chart(ctx, {
         }]
     },
     options: {
-        responsive: true,
-        maintainAspectRatio: false,
         scales: {
-            r: {
-                beginAtZero: true,
-                max: 5
-            }
-        },
-        elements: {
-            line: {
-                borderWidth: 3
+            y: {
+                beginAtZero: true
             }
         }
     }

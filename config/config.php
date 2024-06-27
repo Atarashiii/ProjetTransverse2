@@ -13,4 +13,9 @@ $database = new Database($servername, $username, $password, $dbname);
 
 // Récupération de l'objet de connexion pour être utilisé dans d'autres fichiers
 $conn = $database->getConnection();
+
+if (!defined('APP_VERSION')) {
+    define('APP_VERSION', '1.1.6');
+}
+
 ?>

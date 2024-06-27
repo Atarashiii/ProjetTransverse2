@@ -19,6 +19,7 @@ class Api_Controller {
             'getGrilleData' => 'index.php?ctrl=api&action=getGrilleData&grille_id=1&entreprise_id=1'
         ];
 
+        $appversion['app_version'] = APP_VERSION;
         include '../view/api.php';
     }
 

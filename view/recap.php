@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Résultats de l'Évaluation de la Maturité</title>
-    <link rel="stylesheet" href="../style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-    <header>
-        <h1>Résultats de l'Évaluation de la Maturité</h1>
-    </header>
+<?php include 'header.php'; ?>
+
     <main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <section>
             <?php 
             // Variables pour garder en mémoire les valeurs précédentes
@@ -36,14 +26,10 @@
                     <p>Suggestion : <?= $row['grille_commentaire'] ?></p>
                 </div>
             <?php endforeach; ?>
-            
-            <button id="exportBtn" data-grille-id="1" data-entreprise-id="1">Afficher les données au format JSON</button>
-
-            <script src="../public/js/export.js"></script>
 
             <canvas id="chart" data-axes='<?= json_encode($moyennes_par_axe) ?>'></canvas>
             <script src="../diagnostic_script.js"></script>
         </section>
     </main>
-</body>
-</html>
+
+<?php include 'footer.php'; ?>

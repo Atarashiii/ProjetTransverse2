@@ -38,6 +38,7 @@ class Grille_controller {
             }
         }
 
+        $appversion['app_version'] = APP_VERSION;
         include '../view/recap.php';
     }
 
