@@ -1,73 +1,76 @@
 <?php
 include '../config/config.php';
 include_once '../model/Grille_model.php';
+include_once '../model/Entreprise_model.php';
 
 class Api_Controller {
-    private $model;
+    private $ObjEntrepriseModel;
+    private $ObjGrilleModel;
 
-    public function __construct($model) {
-        $this->model = $model;
+    public function __construct($conn) {
+        $this->ObjEntrepriseModel = new Entreprise_model($conn);
+        $this->ObjGrilleModel = new Grille_model($conn);
     }
 
-    public function handleRequest() {
-        // Vérifier les paramètres
-        $grille_id = isset($_GET['grille_id']) ? intval($_GET['grille_id']) : null;
-        $entreprise_id = isset($_GET['entreprise_id']) ? intval($_GET['entreprise_id']) : null;
-
-        if ($grille_id === null || $entreprise_id === null) {
-            $this->sendError('Paramètres grille_id et entreprise_id requis.');
-            return;
-        }
-
-        // Récupérer les données
-        $data = $this->model->getEvaluationData($grille_id, $entreprise_id);
-        if (!$data) {
-            $this->sendError('Aucune donnée trouvée pour cette grille et entreprise.');
-            return;
-        }
-
-        // Calcul des totaux et moyennes par axe
-        $totaux_par_axe = [];
-        foreach ($data as $row) {
-            if (!isset($totaux_par_axe[$row["axe_libelle"]])) {
-                $totaux_par_axe[$row["axe_libelle"]] = 0;
-            }
-            $totaux_par_axe[$row["axe_libelle"]] += $row["reponse_valeur"];
-        }
-
-        $diviseurs = [
-            "Axe Compétence" => 9,
-            "Axe Réactivité" => 11,
-            "Axe Numérique" => 20,
+    public function listEndpoints() {
+        // Définit les endpoints disponibles
+        $endpoints = [
+            'listEntreprises' => 'index.php?ctrl=api&action=listEntreprises',
+            'getGrilleData' => 'index.php?ctrl=api&action=getGrilleData&grille_id=1&entreprise_id=1'
         ];
 
-        $moyennes_par_axe = [];
-        foreach ($totaux_par_axe as $axe => $total) {
-            if (isset($diviseurs[$axe])) {
-                $moyennes_par_axe[$axe] = ($total / $diviseors[$axe]) * 2.5;
+        include '../view/api.php';
+    }
+
+    public function listEntreprises() {
+        try {
+            // Appeler la méthode du modèle pour obtenir toutes les entreprises
+            $entreprises = $this->ObjEntrepriseModel->getAllEntreprise();
+    
+            // Vérifier s'il y a des résultats
+            if (!empty($entreprises)) {
+                // Envoyer les données en JSON
+                header('Content-Type: application/json');
+                echo json_encode($entreprises);
             } else {
-                $moyennes_par_axe[$axe] = null;
+                echo json_encode(['error' => 'Aucune entreprise trouvée']);
             }
+        } catch (Exception $e) {
+            // Envoyer l'erreur en JSON en cas d'exception
+            echo json_encode(['error' => $e->getMessage()]);
+        }
+    }
+
+    public function getGrilleData() {
+        // Vérifier les paramètres grille_id et entreprise_id dans l'URL
+        if (!isset($_GET['grille_id']) || !isset($_GET['entreprise_id'])) {
+            http_response_code(400); // Bad Request
+            echo json_encode(['error' => 'Paramètres grille_id et entreprise_id requis']);
+            return;
         }
 
-        // Formatage des données
-        $result = [
-            'grille_id' => $grille_id,
-            'entreprise_id' => $entreprise_id,
-            'totaux_par_axe' => $totaux_par_axe,
-            'moyennes_par_axe' => $moyennes_par_axe,
-        ];
+        $grille_id = intval($_GET['grille_id']);
+        $entreprise_id = intval($_GET['entreprise_id']);
 
-        $this->sendResponse($result);
-    }
+        try {
+            // Appeler la méthode du modèle pour obtenir les données de la grille
+            $data = $this->ObjGrilleModel->getEvaluationData($grille_id, $entreprise_id);
 
-    private function sendResponse($data) {
-        header('Content-Type: application/json');
-        echo json_encode($data);
-    }
-
-    private function sendError($message) {
-        $this->sendResponse(['error' => $message]);
+            // Vérifier s'il y a des résultats
+            if (count($data) > 0) {
+                // Envoyer les données en JSON
+                header('Content-Type: application/json');
+                echo json_encode($data);
+            } else {
+                // Aucune donnée trouvée pour cette grille
+                http_response_code(404); // Not Found
+                echo json_encode(['error' => 'Aucune donnée trouvée pour cette grille']);
+            }
+        } catch (Exception $e) {
+            // Erreur de serveur interne
+            http_response_code(500); // Internal Server Error
+            echo json_encode(['error' => $e->getMessage()]);
+        }
     }
 }
 ?>

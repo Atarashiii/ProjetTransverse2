@@ -10,7 +10,7 @@ class Grille_model {
     }
 
     public function getEvaluationData($grille_id, $entreprise_id) {
-        $sql = "SELECT entreprise_libelle, question_libelle, reponse_libelle, reponse_valeur, axe_libelle, categorie_libelle, grille_date, grille_commentaire
+        $sql = "SELECT entreprise_libelle, axe_libelle, categorie_libelle, question_libelle, reponse_valeur, reponse_libelle, grille_date, grille_commentaire
                 FROM grille
                 JOIN entreprise ON grille.entreprise_id = entreprise.entreprise_id
                 JOIN question ON grille.question_id = question.question_id

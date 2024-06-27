@@ -11,8 +11,7 @@
         <h1>Bienvenue sur notre questionnaire</h1>
     </header>
     <main>
-        <p>Cliquez sur le bouton ci-dessous pour commencer le questionnaire.</p>
-        <button onclick="nouvelleGrille()">Nouvelle Grille</button>
+        <p>Séléctionner votre résultat :</p>
         <form action="../public/index.php" method="get">
             <select name="id">
                 <?php foreach ($grilles as $grille): ?>
@@ -25,11 +24,13 @@
             <input type="hidden" name="action" value="GrilleIndex">
             <button type="submit">Afficher la grille</button>
         </form>
+        <form>
+            <br>
+            <br>
+            <input type="hidden" name="ctrl" value="api">
+            <input type="hidden" name="action" value="listEndpoints">
+            <button type="submit">Accès à l'api</button>
+        </form>
     </main>
-    <script>
-        function nouvelleGrille() {
-            window.location.href = 'nouvelleGrille.html';
-        }
-    </script>
 </body>
 </html>
