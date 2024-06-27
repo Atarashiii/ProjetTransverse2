@@ -4,8 +4,8 @@
 include '../config/config.php';
 
 // Obtention du contrôleur et de l'action à partir des paramètres GET, avec des valeurs par défaut
-$strCtrl = $_GET['ctrl'] ?? 'home';
-$strAction = $_GET['action'] ?? 'handleRequest';
+$strCtrl = $_GET['ctrl'] ?? 'Home';
+$strAction = $_GET['action'] ?? 'HomeIndex';
 
 // Construction du chemin vers le fichier du contrôleur
 $strFile = "../controller/" . ucfirst($strCtrl) . "_controller.php";

@@ -9,7 +9,7 @@ class Grille_controller {
         $this->ObjGrilleModel = new Grille_model($conn);
     }
 
-    public function handleRequest() {
+    public function GrilleIndex() {
         $value = isset($_GET['id']) ? $_GET['id'] : die('ID de grille non spécifié.');
         list($grille_id, $entreprise_id) = explode('-', $value);
 
