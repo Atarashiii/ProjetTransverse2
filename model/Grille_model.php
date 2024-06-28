@@ -42,6 +42,73 @@ class Grille_model {
         return $data;
     }
 
+    public function createGrilleForEntreprise($entreprise_id) {
+        // Créer une grille avec des réponses par défaut (réponse_valeur = 0)
+        $date = date('Y-m-d H:i:s');
+        $values = array();
+
+        // Insérer 40 lignes dans la table grille pour l'entreprise donnée
+        for ($question_id = 1; $question_id <= 40; $question_id++) {
+            // Trouver la réponse_id pour cette question où reponse_valeur = 0
+            $sql = "SELECT reponse_id FROM reponse WHERE question_id = $question_id AND reponse_valeur = 0";
+            $result = $this->conn->query($sql);
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $reponse_id = $row['reponse_id'];
+                $values[] = "(1, $entreprise_id, $question_id, $reponse_id, '$date', ' ')";
+            }
+        }
+
+        if (!empty($values)) {
+            $sql = "INSERT INTO grille (grille_id, entreprise_id, question_id, reponse_id, grille_date, grille_commentaire) VALUES " . implode(", ", $values);
+            if ($this->conn->query($sql) === TRUE) {
+                return true;
+            } else {
+                return "Erreur lors de la création de la grille : " . $this->conn->error;
+            }
+        } else {
+            return "Aucune réponse par défaut trouvée.";
+        }
+    }
+
+    public function getGrilleByEntrepriseId($entreprise_id) {
+        $sql = "SELECT g.grille_id, g.entreprise_id, g.question_id, g.reponse_id, q.question_libelle, r.reponse_libelle, g.grille_commentaire, c.categorie_libelle, a.axe_libelle
+                FROM grille g
+                JOIN question q ON g.question_id = q.question_id
+                JOIN reponse r ON g.reponse_id = r.reponse_id
+                JOIN categorie c ON q.categorie_id = c.categorie_id
+                JOIN axe a ON c.axe_id = a.axe_id
+                WHERE g.entreprise_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $entreprise_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getGrilleIdByEntrepriseId($entreprise_id) {
+        $sql = "SELECT grille_id FROM grille WHERE entreprise_id = ? LIMIT 1";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $entreprise_id);
+        $stmt->execute();
+        $stmt->bind_result($grille_id);
+        $stmt->fetch();
+        return $grille_id;
+    }
+
+    public function updateGrilleResponses($entreprise_id, $reponses, $commentaires) {
+        foreach ($reponses as $question_id => $reponse_id) {
+            $commentaire = isset($commentaires[$question_id]) ? $commentaires[$question_id] : '';
+            $sql = "UPDATE grille SET reponse_id = ?, grille_commentaire = ? WHERE entreprise_id = ? AND question_id = ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bind_param("isii", $reponse_id, $commentaire, $entreprise_id, $question_id);
+            if (!$stmt->execute()) {
+                return "Erreur lors de la mise à jour : " . $stmt->error;
+            }
+        }
+        return true;
+    }
+
     public function closeConnection() {
         $this->conn->close();
     }

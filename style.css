@@ -15,6 +15,7 @@ header {
 
 main {
     padding: 2rem;
+    min-height: 60.5vh;
 }
 
 section {
@@ -85,10 +86,77 @@ li {
  
 footer {
     background-color: #777;
-    width: 100%;
     padding: 1rem 0;
-    left: 0;
-    bottom: 0;
     text-align: center;
     color: white;
+    bottom: 0; 
+    width: 100%
   }
+
+  button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px; 
+    transition: background-color 0.3s, color 0.3s; 
+}
+
+button:hover {
+    background-color: #2980b9; 
+}
+
+select {
+    display: block;
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555555;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+select:hover,
+select:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+select::after {
+    content: '\25BC';
+    position: absolute;
+    top: calc(50% - 0.5em);
+    right: 10px;
+    font-size: 1.2em;
+    pointer-events: none;
+}
+
+select option {
+    padding: 10px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.btn-home {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.btn-home:hover {
+    background-color: #2980b9;
+}

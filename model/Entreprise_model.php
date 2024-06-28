@@ -22,7 +22,7 @@ class Entreprise_model {
         return $data;
     }
 
-    public function create($nom, $commentaire) {
+    public function createEntreprise($nom, $commentaire) {
         $nom_entreprise = $this->conn->real_escape_string($nom);
         $commentaire = $this->conn->real_escape_string($commentaire);
         
@@ -33,6 +33,10 @@ class Entreprise_model {
         } else {
             return "Erreur: " . $sql . "<br>" . $this->conn->error;
         }
+    }
+
+    public function getLastInsertedId() {
+        return $this->conn->insert_id;
     }
 
     public function closeConnection() {

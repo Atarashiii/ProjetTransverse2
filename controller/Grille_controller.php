@@ -1,12 +1,18 @@
 <?php
-include '../config/config.php';
+include_once '../config/config.php';
 include_once '../model/Grille_model.php';
+include_once '../model/Question_model.php';
+include_once '../model/Entreprise_model.php';
 
 class Grille_controller {
     private $ObjGrilleModel;
+    private $ObjQuestionModel;
+    private $ObjEntrepriseModel;
 
     public function __construct($conn) {
+        $this->ObjEntrepriseModel = new Entreprise_model($conn);
         $this->ObjGrilleModel = new Grille_model($conn);
+        $this->ObjQuestionModel = new Question_model($conn);
     }
 
     public function GrilleIndex() {
@@ -40,6 +46,46 @@ class Grille_controller {
 
         $appversion['app_version'] = APP_VERSION;
         include '../view/recap.php';
+    }
+
+    public function editGrille() {
+        if (isset($_GET['entreprise_id'])) {
+            $entreprise_id = $_GET['entreprise_id'];
+            $grille_data = $this->ObjGrilleModel->getGrilleByEntrepriseId($entreprise_id);
+            // Récupérer les réponses pour chaque question
+            foreach ($grille_data as &$question) {
+                $question_id = $question['question_id'];
+                $question['responses'] = $this->ObjQuestionModel->getAllResponsesByQuestionId($question_id);
+            }
+            $appversion['app_version'] = APP_VERSION;
+            include '../view/editGrille.php';
+        } else {
+            echo "ID de l'entreprise non spécifié.";
+        }
+    }
+
+    public function saveGrille() {
+        if (!empty($_POST)) {
+            $entreprise_id = isset($_POST['entreprise_id']) ? $_POST['entreprise_id'] : '';
+            $reponses = isset($_POST['reponses']) ? $_POST['reponses'] : [];
+            $commentaires = isset($_POST['commentaires']) ? $_POST['commentaires'] : [];
+
+            $result = $this->ObjGrilleModel->updateGrilleResponses($entreprise_id, $reponses, $commentaires);
+
+    
+            if ($result === true) {
+                // Récupérer l'ID de la grille (si nécessaire, sinon vous pouvez le passer en tant que paramètre)
+                $grille_id = $this->ObjGrilleModel->getGrilleIdByEntrepriseId($entreprise_id);
+    
+                // Rediriger vers l'URL avec les IDs appropriés
+                header("Location: index.php?id={$grille_id}-{$entreprise_id}&ctrl=grille&action=GrilleIndex");
+                exit();
+            } else {
+                echo $result;
+            }
+        } else {
+            echo "Formulaire non soumis.";
+        }
     }
 
     public function __destruct() {

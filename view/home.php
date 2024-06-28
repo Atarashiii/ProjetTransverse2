@@ -18,6 +18,7 @@
                     </option>
                 <?php endforeach; ?>
             </select>
+            <br>
             <input type="hidden" name="ctrl" value="grille">
             <input type="hidden" name="action" value="GrilleIndex">
             <button type="submit">Afficher la grille</button>
