@@ -3,6 +3,7 @@
     <main>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <section>
+            <p>Grille de l'entreprise : <?= $data[0]['entreprise_libelle'] ?> du <?= $data[0]['grille_date'] ?></p> 
             <?php 
             // Variables pour garder en mémoire les valeurs précédentes
             $prev_axe = null;

@@ -23,7 +23,7 @@
                         foreach ($responses as $response):
                     ?>
                         <input type="radio" id="reponse_<?php echo $response['reponse_id']; ?>" name="reponses[<?php echo $data['question_id']; ?>]" value="<?php echo $response['reponse_id']; ?>" <?php echo ($data['reponse_id'] == $response['reponse_id']) ? 'checked' : ''; ?>>
-                        <label for="reponse_<?php echo $response['reponse_id']; ?>"><?php echo $response['reponse_libelle']; ?></label><br>
+                        <label for="reponse_<?php echo $response['reponse_id']; ?>"><?php echo $response['reponse_libelle']; ?> (<?php echo $response['reponse_valeur']; ?> point)</label><br>
                     <?php endforeach; ?>
                     <label for="commentaire_<?php echo $data['question_id']; ?>">Commentaire :</label>
                     <textarea id="commentaire_<?php echo $data['question_id']; ?>" name="commentaires[<?php echo $data['question_id']; ?>]"><?php echo htmlspecialchars($data['grille_commentaire']); ?></textarea>
