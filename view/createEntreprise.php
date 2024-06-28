@@ -5,8 +5,10 @@
             <label for="nom_entreprise">Nom de l'entreprise :</label>
             <input type="text" id="nom_entreprise" name="nom_entreprise" required>
             <br>
+            <br>
             <label for="commentaire">Commentaire :</label>
             <textarea id="commentaire" name="commentaire" required></textarea>
+            <br>
             <br>
             <button type="submit">Créer</button>
         </form>

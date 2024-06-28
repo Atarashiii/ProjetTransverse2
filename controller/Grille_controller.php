@@ -68,8 +68,10 @@ class Grille_controller {
         if (!empty($_POST)) {
             $entreprise_id = isset($_POST['entreprise_id']) ? $_POST['entreprise_id'] : '';
             $reponses = isset($_POST['reponses']) ? $_POST['reponses'] : [];
-    
-            $result = $this->ObjGrilleModel->updateGrilleResponses($entreprise_id, $reponses);
+            $commentaires = isset($_POST['commentaires']) ? $_POST['commentaires'] : [];
+
+            $result = $this->ObjGrilleModel->updateGrilleResponses($entreprise_id, $reponses, $commentaires);
+
     
             if ($result === true) {
                 // Récupérer l'ID de la grille (si nécessaire, sinon vous pouvez le passer en tant que paramètre)

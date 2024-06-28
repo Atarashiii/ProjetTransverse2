@@ -72,10 +72,12 @@ class Grille_model {
     }
 
     public function getGrilleByEntrepriseId($entreprise_id) {
-        $sql = "SELECT g.grille_id, g.entreprise_id, g.question_id, g.reponse_id, q.question_libelle, r.reponse_libelle 
+        $sql = "SELECT g.grille_id, g.entreprise_id, g.question_id, g.reponse_id, q.question_libelle, r.reponse_libelle, g.grille_commentaire, c.categorie_libelle, a.axe_libelle
                 FROM grille g
                 JOIN question q ON g.question_id = q.question_id
                 JOIN reponse r ON g.reponse_id = r.reponse_id
+                JOIN categorie c ON q.categorie_id = c.categorie_id
+                JOIN axe a ON c.axe_id = a.axe_id
                 WHERE g.entreprise_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $entreprise_id);
@@ -94,13 +96,14 @@ class Grille_model {
         return $grille_id;
     }
 
-    public function updateGrilleResponses($entreprise_id, $reponses) {
+    public function updateGrilleResponses($entreprise_id, $reponses, $commentaires) {
         foreach ($reponses as $question_id => $reponse_id) {
-            $sql = "UPDATE grille SET reponse_id = ? WHERE entreprise_id = ? AND question_id = ?";
+            $commentaire = isset($commentaires[$question_id]) ? $commentaires[$question_id] : '';
+            $sql = "UPDATE grille SET reponse_id = ?, grille_commentaire = ? WHERE entreprise_id = ? AND question_id = ?";
             $stmt = $this->conn->prepare($sql);
-            $stmt->bind_param("iii", $reponse_id, $entreprise_id, $question_id);
+            $stmt->bind_param("isii", $reponse_id, $commentaire, $entreprise_id, $question_id);
             if (!$stmt->execute()) {
-                return "Erreur lors de la mise à jour de la grille : " . $stmt->error;
+                return "Erreur lors de la mise à jour : " . $stmt->error;
             }
         }
         return true;
