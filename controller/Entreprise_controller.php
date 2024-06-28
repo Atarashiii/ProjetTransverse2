@@ -2,6 +2,7 @@
 include_once '../config/config.php';
 include_once '../model/Entreprise_model.php';
 include_once '../model/Grille_model.php';
+include_once '../model/Question_model.php';
 
 class Entreprise_controller {
     private $ObjEntrepriseModel;
@@ -34,7 +35,7 @@ class Entreprise_controller {
 
                 if ($result_grille === true) {
                     // Redirection après insertion réussie
-                    header("Location: index.php?action=EntrepriseIndex");
+                    header("Location: index.php?ctrl=grille&action=editGrille&entreprise_id=$entreprise_id");
                     exit();
                 } else {
                     echo $result_grille;

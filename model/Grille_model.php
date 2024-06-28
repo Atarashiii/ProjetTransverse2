@@ -71,6 +71,41 @@ class Grille_model {
         }
     }
 
+    public function getGrilleByEntrepriseId($entreprise_id) {
+        $sql = "SELECT g.grille_id, g.entreprise_id, g.question_id, g.reponse_id, q.question_libelle, r.reponse_libelle 
+                FROM grille g
+                JOIN question q ON g.question_id = q.question_id
+                JOIN reponse r ON g.reponse_id = r.reponse_id
+                WHERE g.entreprise_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $entreprise_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getGrilleIdByEntrepriseId($entreprise_id) {
+        $sql = "SELECT grille_id FROM grille WHERE entreprise_id = ? LIMIT 1";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $entreprise_id);
+        $stmt->execute();
+        $stmt->bind_result($grille_id);
+        $stmt->fetch();
+        return $grille_id;
+    }
+
+    public function updateGrilleResponses($entreprise_id, $reponses) {
+        foreach ($reponses as $question_id => $reponse_id) {
+            $sql = "UPDATE grille SET reponse_id = ? WHERE entreprise_id = ? AND question_id = ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bind_param("iii", $reponse_id, $entreprise_id, $question_id);
+            if (!$stmt->execute()) {
+                return "Erreur lors de la mise à jour de la grille : " . $stmt->error;
+            }
+        }
+        return true;
+    }
+
     public function closeConnection() {
         $this->conn->close();
     }

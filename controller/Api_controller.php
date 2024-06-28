@@ -2,6 +2,7 @@
 include '../config/config.php';
 include_once '../model/Grille_model.php';
 include_once '../model/Entreprise_model.php';
+include_once '../model/Question_model.php';
 
 class Api_Controller {
     private $ObjEntrepriseModel;
